@@ -72,6 +72,7 @@ len(tp)
 Q45. What are sets in Python?
 Sets are unordered collection data type which is mutable, ittrable and which has no duplicate value
 
+
 Q46. How can you create a set?
 nameSet = {"John", "Jane", "Doe"}
 
