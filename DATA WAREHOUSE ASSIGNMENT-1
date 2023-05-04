@@ -1,0 +1,237 @@
+DATA WAREHOUSE ASSIGNMENT-1
+Q1. IPL
+
+1. Team: A team is an entity that participates in the IPL cricket tournament. It can have attributes like team name, owner, coach, captain, home ground, etc.
+
+2. Player: A player is a person who is a part of a team and plays cricket. It can have attributes like name, age, gender, nationality, role (batsman, bowler, all-rounder), etc.
+
+3. Match: A match is an event where two teams play against each other. It can have attributes like match date, venue, result, man of the match, etc.
+
+4. Venue: A venue is a location where a match is played. It can have attributes like name, location, capacity, etc.
+
+5. Season: A season is a group of matches played over a period of time. It can have attributes like year, start date, end date, etc.
+
+6. Score: A score is a record of the runs scored by a team or a player in a match. It can have attributes like runs, wickets, overs, etc.
+
+Based on these entities, we can design the following star schema for the IPL cricket tournament data warehouse:
+
+1. Fact Table: Match Fact Table
+- Match Key (primary key)
+- Team Key (foreign key)
+- Player Key (foreign key)
+- Venue Key (foreign key)
+- Season Key (foreign key)
+- Score Key (foreign key)
+- Result
+- Man of the match
+
+2. Dimension Tables:
+- Team Dimension Table
+  - Team Key (primary key)
+  - Team Name
+  - Owner
+  - Coach
+  - Captain
+  - Home Ground
+
+- Player Dimension Table
+  - Player Key (primary key)
+  - Player Name
+  - Age
+  - Gender
+  - Nationality
+  - Role (batsman, bowler, all-rounder)
+
+- Venue Dimension Table
+  - Venue Key (primary key)
+  - Venue Name
+  - Location
+  - Capacity
+
+- Season Dimension Table
+  - Season Key (primary key)
+  - Year
+  - Start Date
+  - End Date
+
+- Score Dimension Table
+  - Score Key (primary key)
+  - Runs
+  - Wickets
+  - Overs
+
+Q2. Food delivery app
+1. Customer: A customer is an entity that orders food through the Swiggy app. It can have attributes like name, address, phone number, email, etc.
+
+2. Restaurant: A restaurant is an entity that provides food to customers through the Swiggy app. It can have attributes like name, address, cuisine type, ratings, etc.
+
+3. Menu: A menu is a list of items that a restaurant offers for customers to order. It can have attributes like item name, item description, price, etc.
+
+4. Order: An order is a record of the items ordered by a customer from a restaurant. It can have attributes like order number, order date, delivery address, etc.
+
+5. Payment: A payment is a record of the transaction made by a customer to pay for the food ordered. It can have attributes like payment method, payment date, payment amount, etc.
+
+Based on these entities, we can design the following star schema for the food delivery app data warehouse:
+
+1. Fact Table: Order Fact Table
+- Order Key (primary key)
+- Customer Key (foreign key)
+- Restaurant Key (foreign key)
+- Menu Key (foreign key)
+- Payment Key (foreign key)
+- Order Date
+- Delivery Address
+- Order Status
+
+2. Dimension Tables:
+- Customer Dimension Table
+  - Customer Key (primary key)
+  - Name
+  - Address
+  - Phone Number
+  - Email
+
+- Restaurant Dimension Table
+  - Restaurant Key (primary key)
+  - Name
+  - Address
+  - Cuisine Type
+  - Ratings
+
+- Menu Dimension Table
+  - Menu Key (primary key)
+  - Item Name
+  - Item Description
+  - Price
+
+- Payment Dimension Table
+  - Payment Key (primary key)
+  - Payment Method
+  - Payment Date
+  - Payment Amount
+
+Q3. cab ride service
+1. Rider: A rider is an entity that requests a ride through the Uber app. It can have attributes like name, phone number, email, etc.
+
+2. Driver: A driver is an entity that provides rides to riders through the Uber app. It can have attributes like name, phone number, car type, ratings, etc.
+
+3. Trip: A trip is a record of the ride taken by a rider. It can have attributes like trip id, trip start time, trip end time, distance, duration, etc.
+
+4. Payment: A payment is a record of the transaction made by a rider to pay for the trip. It can have attributes like payment method, payment date, payment amount, etc.
+
+Based on these entities, we can design the following star schema for the cab ride service data warehouse:
+
+1. Fact Table: Trip Fact Table
+- Trip Key (primary key)
+- Rider Key (foreign key)
+- Driver Key (foreign key)
+- Payment Key (foreign key)
+- Trip Start Time
+- Trip End Time
+- Distance
+- Duration
+
+2. Dimension Tables:
+- Rider Dimension Table
+  - Rider Key (primary key)
+  - Name
+  - Phone Number
+  - Email
+
+- Driver Dimension Table
+  - Driver Key (primary key)
+  - Name
+  - Phone Number
+  - Car Type
+  - Ratings
+
+- Payment Dimension Table
+  - Payment Key (primary key)
+  - Payment Method
+  - Payment Date
+  - Payment Amount
+
+Q4. Restaurant table booking app
+1. Customer: A customer is an entity that books a table through the Dineout app. It can have attributes like name, address, phone number, email, etc.
+
+2. Restaurant: A restaurant is an entity that provides tables to customers through the Dineout app. It can have attributes like name, address, cuisine type, ratings, etc.
+
+3. Table: A table is a record of the table booked by a customer. It can have attributes like table number, seating capacity, location, etc.
+
+4. Reservation: A reservation is a record of the table booked by a customer at a restaurant. It can have attributes like reservation id, reservation date, reservation time, etc.
+
+Based on these entities, we can design the following star schema for the restaurant table booking app data warehouse:
+
+1. Fact Table: Reservation Fact Table
+- Reservation Key (primary key)
+- Customer Key (foreign key)
+- Restaurant Key (foreign key)
+- Table Key (foreign key)
+- Reservation Date
+- Reservation Time
+
+2. Dimension Tables:
+- Customer Dimension Table
+  - Customer Key (primary key)
+  - Name
+  - Address
+  - Phone Number
+  - Email
+
+- Restaurant Dimension Table
+  - Restaurant Key (primary key)
+  - Name
+  - Address
+  - Cuisine Type
+  - Ratings
+
+- Table Dimension Table
+  - Table Key (primary key)
+  - Table Number
+  - Seating Capacity
+  - Location
+
+Q5. Covid Vaccination Application
+1. Patient: A patient is an entity that registers for a COVID vaccine through the application. It can have attributes like name, age, gender, address, contact details, etc.
+
+2. Vaccine: A vaccine is an entity that is administered to the patient to protect against COVID. It can have attributes like vaccine type, manufacturer, dose, etc.
+
+3. Appointment: An appointment is a record of the time and date of the patient's scheduled vaccine administration. It can have attributes like appointment id, appointment time, appointment date, etc.
+
+4. Health worker: A health worker is an entity that administers the vaccine to the patient. It can have attributes like name, contact details, healthcare organization, etc.
+
+Based on these entities, we can design the following star schema for the COVID vaccination application data warehouse:
+
+1. Fact Table: Appointment Fact Table
+- Appointment Key (primary key)
+- Patient Key (foreign key)
+- Vaccine Key (foreign key)
+- Health Worker Key (foreign key)
+- Appointment Time
+- Appointment Date
+
+2. Dimension Tables:
+- Patient Dimension Table
+  - Patient Key (primary key)
+  - Name
+  - Age
+  - Gender
+  - Address
+  - Contact Details
+
+- Vaccine Dimension Table
+  - Vaccine Key (primary key)
+  - Vaccine Type
+  - Manufacturer
+  - Dose
+
+- Health Worker Dimension Table
+  - Health Worker Key (primary key)
+  - Name
+  - Contact Details
+  - Healthcare Organization
+
+
+
+
+
