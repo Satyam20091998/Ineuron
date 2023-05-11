@@ -1,0 +1,17 @@
+1. What is the definition of Hive? What is the present version of Hive?
+-Hive is a data warehouse system built on top of Hadoop for querying and analyzing large datasets.The present version of Hive is 4.0.0
+
+2. Is Hive suitable to be used for OLTP systems? Why?
+-Hive is not suitable for OLTP systems because it is designed for batch processing of large datasets rather than real-time transaction processing.
+
+3. How is HIVE different from RDBMS? Does hive support ACID transactions. If not then give the proper reason.
+-Hive is different from RDBMS because it is a schema-on-read system, while RDBMS is a schema-on-write system. It does not support ACID property beacuase 
+it cannot guarantee that all changes to the data will be atomic, consistent, isolated, and durable.
+
+4. Explain the hive architecture and the different components of a Hivearchitecture?
+5. Mention what Hive query processor does? And Mention what are the components of a Hive query processor?
+6. What are the three different modes in which we can operate Hive?
+7. Features and Limitations of Hive.
+8. How to create a Database in HIVE?
+9. How to create a table in HIVE?
+10.What do you mean by describe and describe extended and describe formatted with respect to database and table
