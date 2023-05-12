@@ -9,9 +9,122 @@
 it cannot guarantee that all changes to the data will be atomic, consistent, isolated, and durable.
 
 4. Explain the hive architecture and the different components of a Hivearchitecture?
+- mainly there are three component 
+  a.Hive client - to connect with JDBC or ODBC connection
+  b.Hive services - it compiles,optimese and using metastore convert the query into comaptible languaage
+  c.Excecution engine - it excecute the code
+  
 5. Mention what Hive query processor does? And Mention what are the components of a Hive query processor?
+-it  performs several functions, including parsing HiveQL queries, generating a logical plan, optimizing the plan 
+components are Parser, Semantic Analyzer, Query Planner .
+
 6. What are the three different modes in which we can operate Hive?
+  Local Mode: where Hive runs in a single JVM on the local machine.
+  MapReduce Mode: where Hive uses MapReduce to execute queries on a Hadoop cluster.
+  Spark Mode: where Hive uses Apache Spark to execute queries on a Spark cluster.
+  
 7. Features and Limitations of Hive.
+-Features of Hive include support for SQL-like queries, scalability, fault-tolerance, extensibility, and integration with Hadoop. 
+-Limitations of Hive include its lack of support for real-time processing
+
 8. How to create a Database in HIVE?
+-CREATE DATABASE mydatabase;
+
 9. How to create a table in HIVE?
-10.What do you mean by describe and describe extended and describe formatted with respect to database and table
+-CREATE TABLE mytable (
+  column1 INT,
+  column2 STRING,
+  column3 DOUBLE
+);
+
+10.What do you mean by describe and describe extended and describe formatted with respect to database and table?
+-DESCRIBE database_name: returns information about the specified database.
+-DESCRIBE table_name: returns information about the specified table.
+-DESCRIBE FORMATTED table_name: returns detailed information about the specified table, including file format, partitioning scheme, and storage properties.
+
+11.How to skip header rows from a table in Hive?
+-CREATE TABLE my_table (
+  col1 STRING,
+  col2 INT
+)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ','
+TBLPROPERTIES ('skip.header.line.count'='1');
+
+12.What is a hive operator? What are the different types of hive operators?
+-Relational Operators: Used for querying data, such as SELECT, JOIN, UNION, etc.
+-Logical Operators: Used to define the logical flow of operations, such as AND, OR, NOT, etc.
+-Arithmetic Operators: Used for mathematical calculations, such as +, -, *, /, etc.
+-Conditional Operators: Used for conditional operations, such as IF, CASE, WHEN, etc.
+-Transformation Operators: Used for transforming data, such as CAST, COALESCE, CONCAT, etc.
+-Aggregate Operators: Used for aggregating data, such as SUM, COUNT, AVG, etc.
+
+13.Explain about the Hive Built-In Functions
+These functions can be used in Hive queries to manipulate and transform data. Hive provides a wide range of built-in functions, including string functions, mathematical functions, date functions, conditional functions, aggregate functions, and more.
+
+14. Write hive DDL and DML commands.
+-DDL commands:
+
+  CREATE DATABASE: Creates a new database in Hive.
+  CREATE TABLE: Creates a new table in Hive.
+  ALTER TABLE: Modifies the structure of an existing table.
+  DROP TABLE: Deletes a table from Hive.
+
+-DML commands:
+
+  SELECT: Retrieves data from one or more tables.
+  INSERT INTO: Inserts data into a table.
+  UPDATE: Updates existing records in a table.
+  DELETE: Deletes records from a table.
+
+15.Explain about SORT BY, ORDER BY, DISTRIBUTE BY and CLUSTER BY in Hive.
+-SORT BY: Orders the rows of the result based on the specified column(s). It does not guarantee total order across reducers.
+-ORDER BY: Orders the rows of the result based on the specified column(s). It provides a total order across reducers.
+-DISTRIBUTE BY: Determines how the rows are distributed to different reducers based on the specified column(s).
+- CLUSTER BY keyword is used to organize data in a table into clusters based on the values of one or more columns.
+
+16.Difference between "Internal Table" and "External Table" and Mention when to choose “Internal Table” and “External Table” in Hive?
+-Internal Table: An internal table in Hive manages its data and metadata within Hive's warehouse directory. Hive assumes full control over the table's data, including its lifecycle and storage. 
+  If an internal table is dropped, both the metadata and data associated with the table are deleted. Internal tables are the default table type in Hive.
+-External Table: An external table in Hive refers to data that is stored outside of Hive's warehouse directory. The data remains in its original location, and Hive only manages the metadata associated with the table. If an external table is dropped, only the metadata is deleted, while the data remains intact.
+  External tables provide more flexibility in terms of data management and can be shared across multiple Hive instances or other tools.
+When to choose:
+
+-Internal Table: Choose an internal table when you want Hive to have full control over the table's data, and the data is solely managed by Hive. This is suitable when you want Hive to handle the lifecycle and storage management of the data.
+-External Table: Choose an external table when the data already exists outside of Hive, and you want Hive to manage only the metadata.
+
+17.Where does the data of a Hive table get stored?
+-The data of a Hive table gets stored in Hadoop Distributed File System (HDFS) by default.
+
+18.Is it possible to change the default location of a managed table?
+-Yes, it is possible to change the default location of a managed table in Hive.
+
+19.What is a metastore in Hive? What is the default database provided byApache Hive for metastore?
+-In Hive, a metastore is a central repository that stores metadata information about Hive tables, partitions, and schemas.
+The default metastore database provided by Apache Hive is Derby.
+
+20.Why does Hive not store metadata information in HDFS?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
