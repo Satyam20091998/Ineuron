@@ -306,6 +306,26 @@ Use bucketing to distribute the data evenly across different files and improve p
 - the explode function is used to split a column that contains an array or map into multiple rows,
 with each element of the array or map occupying a separate row. 
 
+78.Which interface is used for accessing the Hive metastore?
+-The interface used for accessing the Hive metastore is called the Hive Metastore Thrift Service. It allows clients to communicate with the metastore using the Thrift protocol.
+
+79.Is it possible to compress json in the Hive external table ?
+-es, it is possible to compress JSON data in Hive external tables
+
+80.What is the difference between local and remote metastores?
+-In a local metastore, the metadata is stored on the same machine where Hive is installed. 
+-In a remote metastore, the metadata is stored on a separate machine, allowing multiple instances of Hive to share the same metastore.
+
+
+81.What is the purpose of archiving tables in Hive?
+-The purpose of archiving tables in Hive is to preserve the data and metadata of a table before performing any destructive operations like dropping or altering the table.
+It allows users to revert to a previous state of the table if needed.
+
+
+83.Differentiate between local mode and MapReduce mode in Hive.
+-In Hive, local mode refers to running Hive queries on the local machine where Hive is installed, 
+using the local file system for data storage. MapReduce mode, on the other hand, utilizes the Hadoop MapReduce framework to distribute the query processing across a cluster of machines, providing scalability and fault tolerance.
+
 
 
 
