@@ -104,9 +104,122 @@ When to choose:
 The default metastore database provided by Apache Hive is Derby.
 
 20.Why does Hive not store metadata information in HDFS?
+-Hive does not store metadata information in HDFS because HDFS is designed for storing large files and is optimized for data storage and retrieval, 
+while metadata management is better suited for a database system like Apache Derby or Apache MySQL.
 
+21.What is a partition in Hive? And Why do we perform partitioning in Hive?
+-In Hive, a partition is a way to divide a table into smaller, more manageable parts based on a specific column's value.
+Partitioning in Hive improves query performance by allowing the system to scan only relevant partitions instead of the entire table.
 
+22.What is the difference between dynamic partitioning and static partitioning?
+-The main difference between dynamic partitioning and static partitioning in Hive is how the partitions are created. In dynamic partitioning, partitions are automatically created by Hive based on the data being loaded into the table.
+-In static partitioning, the partitions need to be explicitly defined and created by the user before loading the data.
 
+23.How do you check if a particular partition exists?
+-can use the "SHOW PARTITIONS" 
+
+24.How can you stop a partition form being queried?
+-To prevent a specific partition from being queried in Hive, you can use the "ALTER TABLE" statement with the "ARCHIVE PARTITION" command. 
+This command moves the data of the partition to the HDFS trash directory, making it inaccessible for queries.
+
+25.Why do we need buckets? How Hive distributes the rows into buckets?
+-Buckets in Hive are used for data organization and faster querying. They divide the data within a partition into smaller, equally sized files based on a hash function applied to a chosen column. 
+Hive distributes rows into buckets by assigning each row to a specific bucket based on the hash value of the designated column.
+
+26.In Hive, how can you enable buckets?
+-This can be done using the "CLUSTERED BY" and "SORTED BY" clauses in the "CREATE TABLE" statement.
+
+27.How does bucketing help in the faster execution of queries?
+-Bucketing helps in faster query execution in Hive by reducing the amount of data that needs to be scanned. When a query is executed on a bucketed table, Hive can determine which specific buckets need to be read based on the filtering conditions.
+This eliminates the need to scan the entire table, resulting in improved performance.
+
+28.How to optimise Hive Performance? Explain in very detail.
+-Partitioning the data appropriately to reduce the amount of data scanned.
+-Using bucketing to distribute the data evenly and enable efficient querying.
+-Applying appropriate compression techniques to reduce storage and I/O.
+-Tuning Hive configuration settings, such as memory allocation and parallelism.
+
+29. What is the use of Hcatalog?
+HCatalog is a component of Apache Hive that provides a metadata and table management layer. 
+It allows different tools and frameworks, such as Pig and MapReduce, to interact with Hive's metadata and access data stored in Hive tables
+
+30. Explain about the different types of join in Hive.
+-Inner join: Returns only the matching records from both tables.
+-Left join: Returns all records from the left table and the matching records from the right table.
+-Right join: Returns all records from the right table and the matching records from the left table.
+-Full outer join: Returns all records when there is a match in either the left or right table.
+
+31.Is it possible to create a Cartesian join between 2 tables, using Hive?
+-No, Hive does not support Cartesian joins directly. Cartesian joins can be achieved by omitting the join condition or by using a cross join.
+
+32.Explain the SMB Join in Hive?
+-SMB (Sort-Merge-Bucketed) Join in Hive is a type of join where both tables being joined are bucketed and sorted on the join columns. 
+This type of join can significantly improve query performance by avoiding data shuffling and reducing the amount of data that needs to be processed.
+
+33.What is the difference between order by and sort by which one we should use?
+-In Hive, the "order by" clause is used to sort the entire result set based on specified columns. The "sort by" clause is used to sort the data within each reducer task. If a single reducer is used or the data is already sorted, both "order by" and "sort by" will produce the same result.
+Otherwise, "sort by" is more efficient.
+
+34.What is the usefulness of the DISTRIBUTED BY clause in Hive?
+-The "DISTRIBUTED BY" clause in Hive is used to determine how the data should be distributed across the nodes in a cluster during a map-reduce job.
+It helps in achieving data locality and can improve query performance by minimizing data movement during processing.
+
+35.How does data transfer happen from HDFS to Hive?
+-Data transfer from HDFS (Hadoop Distributed File System) to Hive typically involves two steps. First, the data files are loaded into HDFS using tools like Hadoop's hdfs command or Hadoop File System APIs. Then, Hive is used to create an external table that points to the data location in HDFS.
+Hive uses metadata to access the data stored in HDFS and perform query operations.
+
+36.Wherever (Different Directory) I run the hive query, it creates a new metastore_db, please explain the reason for it?
+-Each time you run a Hive query from a different directory, a new metastore_db is created in that directory to maintain separate metadata for that specific instance or environment.
+This ensures that the metadata remains isolated and independent for different instances of Hive.
+
+37.What will happen in case you have not issued the command: ‘SET hive.enforce.bucketing=true;’ before bucketing a table in Hive?
+ -the bucketing feature will not be enforced. 
+ This means that the table will still be created, but the data will not be properly organized into buckets based on the specified criteria.
+
+38.Can a table be renamed in Hive?
+-Yes, a table can be renamed in Hive using the RENAME TABLE command.
+
+39.Write a query to insert a new column(new_col INT) into a hive table at aposition before an existing column (x_col)
+-ALTER TABLE table_name ADD COLUMNS (new_col INT) BEFORE x_col;
+
+40.What is serde operation in HIVE?
+-SerDe (Serializer/Deserializer) is a key component in Hive that facilitates the serialization and deserialization of data between Hive tables and the underlying storage formats.
+ It defines how the data is structured and how it is converted between its binary representation and a format that can be queried and processed.
+
+41.Explain how Hive Deserializes and serialises the data?
+-Hive deserializes data by reading the serialized data from the storage format and converting it into a structured format that can be queried. The deserialization process involves interpreting the metadata and schema of the data.
+When serializing data, Hive converts the structured data into a binary format that can be stored efficiently in the chosen storage format.
+
+42.Write the name of the built-in serde in hive.
+-The built-in SerDe in Hive is called "LazySimpleSerDe."
+
+43.What is the need of custom Serde?
+-The need for a custom SerDe arises when the built-in SerDes in Hive do not meet specific requirements for data serialization and deserialization.
+
+44.Can you write the name of a complex data type(collection data types) inHive?
+-Array, Struct, Map, and Union are complex data types in Hive
+
+45.Can hive queries be executed from script files? How?
+-Yes, hive queries can be executed from script files using the command "hive -f script_file_name".
+
+46.What are the default record and field delimiter used for hive text files?
+-The default record delimiter used for Hive text files is '\n' (newline), and the default field delimiter is '\t' (tab).
+
+47.How do you list all databases in Hive whose name starts with s?
+-"SHOW DATABASES LIKE 's%'".
+
+48.What is the difference between LIKE and RLIKE operators in Hive?
+-The LIKE operator in Hive is used for pattern matching using wildcard characters ('%', '_'),
+ while the RLIKE operator is used for pattern matching using regular expressions.
+ 
+ 49.How to change the column data type in Hive?
+ -ALTER TABLE table_name CHANGE COLUMN column_name new_column_name new_data_type;
+
+50.How will you convert the string ’51.2’ to a float value in the particular column?
+-SELECT CAST('51.2' AS FLOAT) AS float_column;
+
+51.What will be the result when you cast ‘abc’ (string) as INT?
+-the result will be NULL. Casting a non-numeric string to an integer will result in a null value in Hive
 
 
 
