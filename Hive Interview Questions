@@ -221,7 +221,90 @@ When serializing data, Hive converts the structured data into a binary format th
 51.What will be the result when you cast ‘abc’ (string) as INT?
 -the result will be NULL. Casting a non-numeric string to an integer will result in a null value in Hive
 
+52.What does the following query do?
+  a. INSERT OVERWRITE TABLE employees
+  b. PARTITION (country, state)
+  c. SELECT ..., se.cnty, se.st
+  d. FROM staged_employees se;
+--The query performs an overwrite insert into the "employees" table, partitioned by "country" and "state", 
+selecting specific columns and data from the "staged_employees" table.
 
+53.Write a query where you can overwrite data in a new table from the existing table.
+-INSERT OVERWRITE TABLE new_table
+SELECT * FROM existing_table;
+
+54.What is the maximum size of a string data type supported by Hive? Explain how Hive supports binary formats.
+-The maximum size of a string data type supported by Hive is 2^31 - 1 (2,147,483,647) characters. Hive uses the Java String data type, which has a similar maximum size limitation.
+
+55. What File Formats and Applications Does Hive Support?
+-File Formats: Hive supports popular file formats like TextFile, SequenceFile, RCFile, ORC (Optimized Row Columnar), and Parquet. 
+-Applications: Hive is commonly used alongside Apache Hadoop and Apache Spark. It integrates with Hadoop Distributed File System (HDFS) and can process data stored in HDFS or other compatible file systems. 
+  Hive can also interact with external systems like Apache Kafka for data ingestion or Apache Tez for optimized query execution.
+
+56.How do ORC format tables help Hive to enhance its performance?
+-ORC format tables in Hive enhance performance by providing optimized storage and compression, column pruning, predicate pushdown, and efficient data encoding, 
+  which reduce I/O and improve query execution speed.
+  
+57.How can Hive avoid mapreduce while processing the query?
+-Hive can avoid MapReduce while processing a query by utilizing Tez or Spark as the execution engine. These engines provide in-memory processing, data caching, and more efficient query optimization,
+resulting in faster query execution compared to MapReduce.
+
+58.What is view and indexing in hive?
+-In Hive, a view is a logical table that is based on the result of a query. It provides a way to create a virtual table with a predefined query, simplifying complex queries or providing data security.
+-Indexing in Hive is a mechanism to improve query performance by creating an index on specific columns of a table, allowing faster data retrieval.
+
+59.Can the name of a view be the same as the name of a hive table?
+-Yes, the name of a view can be the same as the name of a Hive table.
+
+60.What types of costs are associated in creating indexes on hive tables?
+-Creating indexes on Hive tables involves two main costs: the initial cost of creating the index, which includes scanning and indexing the data, and the ongoing maintenance cost,
+which includes updating the index whenever the underlying table is modified.
+
+61.Give the command to see the indexes on a table.
+-SHOW INDEXES ON table_name;
+
+62. Explain the process to access subdirectories recursively in Hive queries.
+-SELECT * FROM table_name WHERE file_path LIKE '/data/%';
+
+63.If you run a select * query in Hive, why doesn't it run MapReduce?
+-it doesn't necessarily run MapReduce because Hive can leverage its metadata to retrieve the data directly from the underlying storage (e.g., HDFS) 
+ without the need for MapReduce processing.
+
+64.What are the uses of Hive Explode?
+-Hive's Explode function is used to transform a column with an array or map type into multiple rows, with each element of the array or map occupying a separate row. 
+It is useful for unnesting complex data structures and performing further analysis or processing on the expanded data.
+
+65. What is the available mechanism for connecting applications when we run Hive as a server?
+-Hive provides Thrift and JDBC/ODBC as mechanisms for connecting applications when running Hive as a server. 
+
+66.Can the default location of a managed table be changed in Hive?
+-Yes, the default location of a managed table can be changed in Hive by altering the table and specifying the new location using the LOCATION clause.
+
+67.What is the Hive ObjectInspector function?
+-The Hive ObjectInspector function is a utility in Hive that helps in inspecting and manipulating the internal representation of data objects.
+It provides methods to access and interpret the data stored in different formats.
+
+68.What is UDF in Hive?
+-UDF in Hive stands for User-Defined Function. It is a mechanism provided by Hive to allow users to define their own functions to process data. 
+UDFs can be used to perform custom operations and transformations on data within Hive queries.
+
+69.Write a query to extract data from hdfs to hive.
+-LOAD DATA INPATH 'hdfs://<hdfs_path>/input_data.csv' INTO TABLE hive_table;
+
+70.What is TextInputFormat and SequenceFileInputFormat in hive.
+--TextInputFormat is the default input format in Hive and it treats each line of a file as a separate record.
+--SequenceFileInputFormat is an optimized input format in Hive that stores data in a binary format called SequenceFile.
+  It is suitable for large-scale data processing and provides efficient compression and serialization.
+
+71.How can you prevent a large job from running for a long time in a hive?
+-Adjust the number of reducers using hive.exec.reducers.max property to limit the parallelism of the job.
+-Enable dynamic partitioning to optimize the query execution time by setting hive.exec.dynamic.partition.mode to nonstrict.
+Use bucketing to distribute the data evenly across different files and improve performance.
+-Tune the query parameters such as memory allocation, parallelism, and input/output formats based on the characteristics of the job.
+
+72.When do we use explode in Hive?
+- the explode function is used to split a column that contains an array or map into multiple rows,
+with each element of the array or map occupying a separate row. 
 
 
 
