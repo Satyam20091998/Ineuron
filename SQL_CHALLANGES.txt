@@ -1,8 +1,4 @@
-use sql_challenge;
-create table personal_profiles(
-profile_id int,
-name varchar(30),
-followers int);
+##SQL QUESTION
 
 create table employee_company(
 personal_profile_id int,
