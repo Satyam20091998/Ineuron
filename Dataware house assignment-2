@@ -1,0 +1,35 @@
+Scenario I:
+Question 1:
+Option A: Strengths - It allows the inclusion of the Instructor dimension in the fact table by adding special rows representing instructor teams. Weaknesses - It can complicate the fact table with additional rows for instructor teams, and querying for individual instructors may require additional processing.
+
+Option B: Strengths - It maintains the original grain of the fact table and allocates enrollments equally among multiple instructors. Weaknesses - It may lead to fractional values in the EnrollmentCount field, which can complicate aggregation and calculations.
+
+Option C: Strengths - It separates the fact tables based on the presence of the Instructor dimension, making it easier for warehouse users to choose the appropriate fact table for their queries. Weaknesses - It introduces redundancy by having two fact tables, and it requires users to be aware of which table to use for specific queries.
+
+Question 2:
+I would choose Option A because it allows the inclusion of the Instructor dimension in the fact table while maintaining the original grain. It provides flexibility in analyzing instructor-related attributes and avoids fractional values in the EnrollmentCount field.
+
+Question 3:
+If the majority of classes had multiple instructors, Option A would still be a suitable choice as it allows the representation of instructor teams. However, if only one or two classes had multiple instructors, Option B could be considered as it maintains the original grain and avoids the complexity of representing instructor teams.
+
+Question 4:
+Another alternative design could be to create a separate fact table for instructor enrollments. This way, the Instructor dimension can be included in the fact table without modifying the grain. The advantages of this approach would include maintaining a clean fact table with clear relationships, easier querying for instructor-related information, and flexibility in handling various scenarios involving instructors. The disadvantage would be the redundancy of storing enrollment information in multiple fact tables, which would require careful management and synchronization.
+
+Scenario II:
+Question 5:
+Option A: Strengths - It simplifies the dimension structure by treating the scores as attributes of the Customer dimension. Weaknesses - It overwrites the old score when it changes, losing historical information.
+
+Option B: Strengths - It maintains historical records by creating new Customer dimension rows when scores change. Weaknesses - It increases the size of the Customer dimension over time and can complicate queries that involve tracking changes.
+
+Option C: Strengths - It stores the scores in a separate dimension, reducing the size of the Customer dimension and allowing easy filtering and grouping. Weaknesses - It adds complexity by introducing another dimension and requires additional joins in queries.
+
+Option D: Strengths - It uses an outrigger table to store the scores, keeping the Customer dimension clean. Weaknesses - It requires updating the foreign key in the Customer table when scores change, which can impact performance and maintenance.
+
+Question 6:
+I would choose Option B because it maintains historical records by creating new Customer dimension rows when scores change. This allows for tracking changes over time and provides a complete view of customer scores.
+
+Question 7:
+If the number of customers and/or the time interval between score recalculations was much larger, Option C could be a better choice. Storing the scores in a separate dimension with a smaller number of rows would help manage the size of the dimension and optimize query performance. However, if the time interval between score recalculations was much smaller, Option B would still be preferred to capture frequent score changes accurately.
+
+Question 8:
+Another alternative design could be to implement a hybrid approach combining Option B and Option C. The scores could be stored as attributes of the Customer dimension, similar to Option B, but with the addition of a separate CustomerScores dimension to provide a compact representation of the scores. This would maintain historical records in the Customer dimension while allowing efficient filtering and grouping using the CustomerScores dimension.
