@@ -1,0 +1,19 @@
+![image](https://github.com/Satyam20091998/Ineuron-Assignment/assets/92753984/57a575aa-4cba-4ad5-804e-5d532e2e648b)
+
+Connect and collect:
+Azure Data Factory can connect to various data sources, including Azure Data Lake Storage and Azure Blob storage. It can collect data from these sources and store it for further processing and analysis.
+
+Transform and enrich:
+Data flows in Azure Data Factory enable data engineers to build and manage data transformation workflows without requiring expertise in Spark clusters or programming. Data flows utilize Spark compute to execute data transformations and enrichments.
+
+CI/CD and publish:
+Azure Data Factory provides comprehensive support for continuous integration and continuous deployment (CI/CD) of data pipelines. It integrates with Azure DevOps and GitHub to enable version control, automated testing, and seamless deployment of data pipelines.
+
+Monitor:
+Azure Data Factory offers built-in monitoring capabilities through Azure Monitor. It allows you to track the execution and performance of your data pipelines. You can monitor pipelines using Azure Monitor logs, API, PowerShell, and the health panels on the Azure portal.
+
+Mapping data flows:
+Data Factory executes data transformation logic using Spark clusters. When you define a data flow in Azure Data Factory, it automatically spins up a Spark cluster to perform the required transformations. The cluster is dynamically provisioned and scaled based on your workload.
+
+Linked services:
+Linked services in Azure Data Factory serve as connection strings or configuration settings required to establish connections with external data sources or services. They define the connection information needed for Data Factory to connect to resources like databases, storage accounts, and APIs.
