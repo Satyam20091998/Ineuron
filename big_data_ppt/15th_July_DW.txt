@@ -1,0 +1,94 @@
+
+TOPIC: Data Warehousing Fundamentals
+   1. Design a data warehouse schema for a retail company that includes dimension tables for products, customers, and time. Implement the schema using a relational database management system (RDBMS) of your choice.
+   2. Create a fact table that captures sales data, including product ID, customer ID, date, and sales amount. Populate the fact table with sample data.
+   3. Write SQL queries to retrieve sales data from the data warehouse, including aggregations and filtering based on different dimensions.
+
+TOPIC: ETL and Data Integration
+  1. Design an ETL process using a programming language (e.g., Python) to extract data from a source system (e.g., CSV files), transform it by applying certain business rules or calculations, and load it into a data warehouse.
+  2. Implement the ETL process by writing code that performs the extraction, transformation, and loading steps.
+
+
+TOPIC: Dimensional Modeling and Schemas
+   1. Design a star schema for a university database, including a fact table for student enrollments and dimension tables for students, courses, and time. Implement the schema using a database of your choice.
+   2. Write SQL queries to retrieve data from the star schema, including aggregations and joins between the fact table and dimension tables.
+
+TOPIC: Performance Optimization and Querying
+    1. Scenario: You need to improve the performance of your data loading process in the data warehouse. Write a Python script that implements the following optimizations:
+Utilize batch processing techniques to load data in bulk instead of individual row insertion.
+      b)  Implement multi-threading or multiprocessing to parallelize the data loading process.
+      c)  Measure the time taken to load a specific amount of data before and after implementing these optimizations.
+
+
+
+Ans:
+TOPIC: Data Warehousing Fundamentals
+
+1. Designing a data warehouse schema for a retail company:
+
+In this example, we'll design a simplified data warehouse schema for a retail company. The schema will include dimension tables for products, customers, and time. We'll assume that each table has an appropriate primary key and that foreign key relationships are established where necessary.
+
+- Product Dimension Table (product_dim):
+  - product_id (Primary Key)
+  - product_name
+  - category
+  - brand
+  - price
+
+- Customer Dimension Table (customer_dim):
+  - customer_id (Primary Key)
+  - customer_name
+  - address
+  - email
+  - phone
+
+- Time Dimension Table (time_dim):
+  - date_id (Primary Key)
+  - date
+  - day
+  - month
+  - year
+
+2. Creating a fact table to capture sales data:
+
+Next, we'll create a fact table to capture sales data. The fact table will include the following columns:
+
+- Sales Fact Table (sales_fact):
+  - sales_id (Primary Key)
+  - product_id (Foreign Key to product_dim)
+  - customer_id (Foreign Key to customer_dim)
+  - date_id (Foreign Key to time_dim)
+  - sales_amount
+
+3. Writing SQL queries to retrieve sales data:
+
+Now, let's write some SQL queries to retrieve sales data from the data warehouse, including aggregations and filtering based on different dimensions.
+
+a) Retrieve total sales amount for each product:
+```sql
+SELECT p.product_name, SUM(s.sales_amount) AS total_sales_amount
+FROM sales_fact s
+JOIN product_dim p ON s.product_id = p.product_id
+GROUP BY p.product_name;
+```
+
+b) Retrieve total sales amount for each customer:
+```sql
+SELECT c.customer_name, SUM(s.sales_amount) AS total_sales_amount
+FROM sales_fact s
+JOIN customer_dim c ON s.customer_id = c.customer_id
+GROUP BY c.customer_name;
+```
+
+c) Retrieve total sales amount for each month in a specific year:
+```sql
+SELECT t.month, SUM(s.sales_amount) AS total_sales_amount
+FROM sales_fact s
+JOIN time_dim t ON s.date_id = t.date_id
+WHERE t.year = 2023
+GROUP BY t.month;
+```
+
+These are just a few examples of SQL queries that can be written to retrieve sales data from the data warehouse based on different dimensions. You can further customize the queries based on specific requirements.
+
+Note: The choice of RDBMS for implementing the schema and executing the SQL queries is up to you. Popular options include MySQL, PostgreSQL, Oracle, and SQL Server.
